@@ -44,11 +44,11 @@ const ProcessStatus = () => {
                 const result = await processService.getProcessList();
                 dispatch(setProcessData(result));
             } catch (err) {
-                setError('Erro ao buscar dados: ' + err);
+                setError('Erro de conexão com o servidor');
                 
                 // Define um timeout para limpar a mensagem de erro após 5 segundos
                 setTimeout(() => {
-                    setError('');
+                    setError(null);
                 }, 5000);
             } finally {
                 setLoading(false);
@@ -57,6 +57,7 @@ const ProcessStatus = () => {
     
         fetchData();
     }, [dispatch]);
+    
     
 
     return (
