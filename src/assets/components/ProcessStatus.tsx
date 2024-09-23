@@ -1,6 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
 import CoreBadge from "./CoreBadge";
-import CoreSpinner from './CoreSpinner';
 import { IStationColorMap, ProcessState } from "../../types/types";
 import { useEffect, useState } from "react";
 import { processService } from "../../service/processService"; // Importe seu serviço
@@ -11,7 +10,6 @@ import { FaClock } from 'react-icons/fa'; // Example ico
 const ProcessStatus = () => {
     const dispatch = useDispatch();
     const data = useSelector((state: { process: ProcessState }) => state.process.data);
-    const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
 
     const stationColor: IStationColorMap = {
@@ -39,7 +37,6 @@ const ProcessStatus = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            setLoading(true);
             try {
                 const result = await processService.getProcessList();
                 dispatch(setProcessData(result));
@@ -47,8 +44,6 @@ const ProcessStatus = () => {
             } catch (err) {
                 console.log(err);
                 setError('Erro de conexão com o servidor');
-            } finally {
-                setLoading(false);
             }
         };
 
