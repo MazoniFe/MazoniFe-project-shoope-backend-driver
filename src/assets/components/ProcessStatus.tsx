@@ -45,17 +45,19 @@ const ProcessStatus = () => {
                 dispatch(setProcessData(result));
             } catch (err) {
                 setError('Erro ao buscar dados: ' + err);
+                
+                // Define um timeout para limpar a mensagem de erro após 5 segundos
+                setTimeout(() => {
+                    setError('');
+                }, 5000);
             } finally {
                 setLoading(false);
             }
         };
-
-        fetchData(); // Fetch data immediately on mount
-
-        const intervalId = setInterval(fetchData, 2000); // Fetch data every 2 seconds
-
-        return () => clearInterval(intervalId); // Cleanup interval on unmount
+    
+        fetchData();
     }, [dispatch]);
+    
 
     return (
         <div className="flex flex-col p-6 bg-gray-800 outline outline-2 outline-white rounded-xl shadow-md">
