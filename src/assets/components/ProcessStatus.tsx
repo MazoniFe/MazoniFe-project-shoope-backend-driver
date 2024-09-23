@@ -43,19 +43,24 @@ const ProcessStatus = () => {
             try {
                 const result = await processService.getProcessList();
                 dispatch(setProcessData(result));
+                setError('');
             } catch (err) {
+                console.log(err);
                 setError('Erro de conexão com o servidor');
-                
-                // Define um timeout para limpar a mensagem de erro após 5 segundos
-                setTimeout(() => {
-                    setError(null);
-                }, 5000);
             } finally {
                 setLoading(false);
             }
         };
-    
-        fetchData();
+
+        fetchData(); // Chamada inicial
+
+        const intervalId = setInterval(() => {
+            fetchData(); // Chama a função a cada 2 segundos
+        }, 2000);
+
+        return () => {
+            clearInterval(intervalId); // Limpa o intervalo ao desmontar o componente
+        };
     }, [dispatch]);
     
     
@@ -66,11 +71,11 @@ const ProcessStatus = () => {
                 <h3 className="flex-1 text-lg md:text-2xl font-semibold text-center text-white">
                     STATUS DO PROCESSO
                 </h3>
-                {loading && (
+                {/* {loading && (
                     <div className="absolute right-0">
                         <CoreSpinner size="medium" />
                     </div>
-                )}
+                )} */}
             </div>
 
 
