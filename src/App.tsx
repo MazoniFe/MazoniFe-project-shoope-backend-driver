@@ -1,8 +1,9 @@
+
 import ProcessStatus from "./assets/components/ProcessStatus";
 
 const App = () => {
     return (
-        <div className="grid min-h-screen bg-gray-800 grid-rows-5 px-2 py-6">
+        <div className="grid min-h-screen bg-gray-800 grid-rows-5 px-2 py-20 md:px-40 md:py-32 gap-2">
             <div className="row-span-1 flex items-center justify-center">
                 <img
                     src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Shopee_logo.svg/1442px-Shopee_logo.svg.png"
@@ -11,7 +12,7 @@ const App = () => {
                 />
             </div>
 
-            <div className="row-span-4 grid grid-cols-1 justify-items-center align-items-center">
+            <div className="row-span-3 grid grid-cols-1 justify-items-center align-items-center">
                 <div className="w-full self-center">
                     <ProcessStatus />
                 </div>
