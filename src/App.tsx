@@ -11,7 +11,6 @@ const App = () => {
                     alt=""
                 />
             </div>
-
             <div className="row-span-3 grid grid-cols-1 justify-items-center align-items-center">
                 <div className="w-full self-center">
                     <ProcessStatus />
